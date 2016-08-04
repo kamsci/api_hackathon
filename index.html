@@ -10,13 +10,61 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" href="app/css/style.css">
+  <!-- Lo Dash -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+  <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <!-- Angular -->
-     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
   <!-- Angular ui.router -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+  <!-- Simple Logger -->
+    <script src="app/angular-simple-logger.min.js"></script>
+  <!-- Google API key -->
+    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyAobu02DNhpYZzLN7Diey3FKVNicN3_Elk'></script>
+  <!-- Google Maps -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.3.3/angular-google-maps.min.js"></script>
+  <!-- Local JS files -->
+    <script src="app/app.js"></script>
 </head>
 
-<body>
+<body ng-app="ParksApp" ng-controller="ParksCtrl">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <select ng-model="select">
+      <option value="">---Please select a feature---</option>
+      <option value="{{ feature }}" ng-repeat="feature in featureResults track by $index" >{{ feature }}</option>
+    </select>
+    <button ng-click="click()" class="btn">Submit</button>
+
+    <div ng-controller="MapCtrl">
+      <p>{{ works }}</p>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+        <ui-gmap-marker ng-repeat="park in parks track by $index"
+        idKey='$index'
+        coords='{
+          latitude: park.ypos,
+          longitude: park.xpos
+        }'
+        click='getParkFeatures(park.pmaid)'
+        >
+        <ui-gmap-window>
+          <div>
+            <ul>
+              {{pfArray.length}} - {{pfArray[0].feature_desc}}
+              <li data-ng-repeat="thing in pfArray track by $index">
+                test: {{ thing.feature_desc }}
+              </li>
+            </ul>
+            <label>{{ park.name }}</label>
+            <p>{{ park.hours }}</p>
+          </div>
+        </ui-gmap-window>
+        </ui-gmap-marker>
+      </ui-gmap-google-map>
+    </div>
 
 </body>
 
