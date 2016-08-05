@@ -22,17 +22,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 app.controller('ParksCtrl', ['$scope', '$http', '$location', '$state', function($scope, $http, $location, $state) {
   $scope.title = "Seattle Pick-a-Park";
   $scope.select = '';
-  $scope.hideIt = false;
-  $scope.show = function (){
-    $scope.hideIt = false;
+  $scope.show = function(){
     $state.go('home');
-
-    // console.log("Clicker")
-    // console.log("Scope", $scope.hideIt);
-    // $scope.hideIt = true;
-    // console.log("Scope", $scope.hideIt);
   }
-
 
   $scope.click = function() {
    console.log("Select:", $scope.select);  
@@ -64,8 +56,6 @@ app.controller('ParksCtrl', ['$scope', '$http', '$location', '$state', function(
   }
 
   $scope.search = function(event) {
-    $scope.hideIt = true;
-
     field_sport = [
       "Baseball/Softball",
       "Cricket",
