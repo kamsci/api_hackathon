@@ -1,0 +1,35 @@
+<div ng-controller="ParksCtrl">
+  <hr>
+    <select ng-model="select" class="btn dropdown-toggle">
+      <option value="">---Please select a feature---</option>
+      <option value="{{ feature }}" ng-repeat="feature in featuresArray track by $index" >{{ feature }}</option>
+    </select>
+    <button ng-click="click()" class="btn custom-btn">Submit</button>
+    
+    <button class="pull-right custom-btn" ng-click="show()">Home</button>
+
+    <div ng-controller="MapCtrl">
+      <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+        <ui-gmap-marker ng-repeat="park in parks track by $index"
+        idKey='$index'
+        coords='{
+          latitude: park.ypos,
+          longitude: park.xpos
+        }'
+        click='getParkFeatures(park.pmaid)'
+        >
+        <ui-gmap-window>
+          <div>
+            <ul>
+              <li data-ng-repeat="thing in pfArray track by $index">
+                test: {{ thing.feature_desc }}
+              </li>
+            </ul>
+            <label>{{ park.name }}</label>
+            <p>{{ park.hours }}</p>
+          </div>
+        </ui-gmap-window>
+        </ui-gmap-marker>
+      </ui-gmap-google-map>
+    </div>
+  </div>

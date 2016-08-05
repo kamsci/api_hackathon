@@ -1,3 +1,44 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.header {
+  background-color: #549e39;
+}
+.header img {
+  margin: 10px 10px;
+  width: 200px;
+  height: auto;
+}
+.content {
+  margin: 50px auto;
+  border: 1px solid lightgray;
+  width: 80%;
+}
+.content h3 {
+  margin: 50px 50px;
+}
+.list {
+  margin-bottom: 50px;
+}
+.custom-btn {
+  margin: 20px 10px;
+  text-align: center;
+  border-radius: 0;
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+}
+.list a {
+  color: black;
+}
+.list a:hover {
+  color: white;
+}
+.list button:hover {
+  background-color: #549e39;
+  color: white;
+
+}
 .angular-google-map-container { 
   height: 400px; 
 }
